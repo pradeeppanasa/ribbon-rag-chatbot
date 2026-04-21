@@ -1,0 +1,77 @@
+[
+  {
+    "question": "What is Ribbon and what services does it offer?",
+    "ground_truth": "Ribbon Plc is a digital financial services super-app offering hyper-personalized multi-currency wallets to NRIs and residents of India. It provides personal accounts, business accounts, remittance services, investments, and sustainability features — all in one platform.",
+    "category": "ribbon_overview"
+  },
+  {
+    "question": "Can I open a Ribbon account before moving to the UK?",
+    "ground_truth": "Yes. Ribbon's Account Before Flying service allows you to open a UK account while still in India. You can receive physical and virtual debit cards, transfer your India credit bureau score, fund your account from approved countries, and set savings Goals and spend Budgets before you travel.",
+    "category": "ribbon_personal_account"
+  },
+  {
+    "question": "What is the Ribbon Remittance Marketplace?",
+    "ground_truth": "Ribbon's Remittance Marketplace is a unique payments platform that sources live rates from major money transfer service providers and offers the best competitive rates for sending money to India. It allows users to compare rates from multiple providers in real-time and send money instantly with transparent pricing and no hidden fees.",
+    "category": "ribbon_personal_account"
+  },
+  {
+    "question": "What types of personal accounts does Ribbon offer?",
+    "ground_truth": "Ribbon offers three types of personal accounts: Standard Account for everyday financial management, Student Account with features like bill splitting and money requests, and Account Before Flying which allows Indians to open a UK account before relocating.",
+    "category": "ribbon_personal_account"
+  },
+  {
+    "question": "How does the Ribbon split bill feature work?",
+    "ground_truth": "Ribbon's split bill feature allows multiple users to divide expenses easily. You can request money from friends and family directly through the app, track shared expenses, and see who owes what in real-time. You receive instant notifications when payments are made or requested.",
+    "category": "ribbon_personal_account"
+  },
+  {
+    "question": "What investment options are available on Ribbon?",
+    "ground_truth": "Ribbon offers four investment products: Equity Trading for buying and selling stocks on major exchanges, Crypto Trading for major cryptocurrencies, Forex Trading for currency pairs including GBP/INR and GBP/USD, and Deposits for earning interest on account balances. All investment products are offered through appropriately licensed partners.",
+    "category": "ribbon_investments"
+  },
+  {
+    "question": "Is Ribbon an environmentally sustainable company?",
+    "ground_truth": "Yes. Ribbon is a carbon-neutral, net-zero financial services platform. Every Ribbon card is made from recycled plastic. Based on customer spending patterns, Ribbon diverts plastic bottles from the ocean and plants trees. Customers earn Ribbon coins for sustainable spending behaviour.",
+    "category": "ribbon_sustainability"
+  },
+  {
+    "question": "What budgeting features does Ribbon app provide?",
+    "ground_truth": "Ribbon allows users to set spending budgets for different categories such as dining, shopping, travel and entertainment. It sends real-time alerts when approaching or exceeding a budget. Budgets can be set as daily, weekly or monthly periods, and performance is shown with intuitive progress bars. Budgets sync across all cards and accounts.",
+    "category": "ribbon_features"
+  },
+  {
+    "question": "What is the Ribbon Piggy Bank feature?",
+    "ground_truth": "The Piggy Bank feature helps users set aside money for specific purposes. You can create multiple piggy banks for different savings goals, use an automatic round-up feature to add spare change from purchases, set a target amount and track progress visually, and earn interest on piggy bank savings where applicable.",
+    "category": "ribbon_features"
+  },
+  {
+    "question": "How does Ribbon support business owners?",
+    "ground_truth": "Ribbon offers a business account specifically designed for the UK-India business corridor, supporting SMEs, freelancers and sole proprietors. Features include fast digital account opening, multi-currency support in GBP, EUR, USD and INR, international transfers to India at competitive rates, business debit cards, and detailed transaction reports for accounting and tax purposes.",
+    "category": "ribbon_business_account"
+  },
+  {
+    "question": "How do I open a Ribbon account and what documents do I need?",
+    "ground_truth": "Download the Ribbon app from the App Store or Google Play and complete the digital onboarding in minutes. You need a valid passport or national ID card, proof of address such as a utility bill or bank statement, and a selfie for biometric verification. No minimum deposit is required and most accounts are approved within minutes.",
+    "category": "ribbon_faq"
+  },
+  {
+    "question": "What currencies can I hold in a Ribbon account?",
+    "ground_truth": "Ribbon supports multiple currencies including GBP, EUR, USD and INR. Users can hold balances, send, and convert currencies effortlessly within one account. Live exchange rates with transparent conversion fees are available, and there are no currency conversion fees on card transactions in supported currencies.",
+    "category": "ribbon_features"
+  },
+  {
+    "question": "How does Ribbon protect customer money and accounts?",
+    "ground_truth": "Ribbon is authorised and regulated by the Financial Conduct Authority (FCA) in the UK. Customer funds are held in safeguarded accounts separate from Ribbon's own funds. Security features include biometric authentication, two-factor authentication (2FA), real-time fraud monitoring and instant card freeze functionality through the app.",
+    "category": "ribbon_faq"
+  },
+  {
+    "question": "What analytics does the Ribbon app provide?",
+    "ground_truth": "Ribbon provides detailed spending analytics with visual breakdowns by category, merchant and time period. Monthly and weekly spending summaries help identify patterns and savings opportunities. Users can compare spending across different time periods and receive smart insights highlighting unusual spending and potential savings.",
+    "category": "ribbon_features"
+  },
+  {
+    "question": "What is Ribbon's vision and mission?",
+    "ground_truth": "Ribbon's vision goes beyond banking — they are building a sustainable financial platform to empower customers to take charge of their financial journey and have a positive impact on the planet. Their mission is to create a digital ecosystem where transactions become the currency for transformation, offering hyper-personalized multi-currency wallets through an open-platform integrating multiple financial services.",
+    "category": "ribbon_overview"
+  }
+]
