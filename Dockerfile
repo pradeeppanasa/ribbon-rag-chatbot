@@ -1,15 +1,19 @@
-FROM python:3.10-slim-buster
+FROM python:3.11-slim
 
 WORKDIR /app
 
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Expose port for Streamlit
-EXPOSE 8501
+EXPOSE 7860
 
-# Command to run the application
-CMD ["streamlit", "run", "src/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+HEALTHCHECK CMD curl --fail http://localhost:7860/_stcore/health
+
+CMD ["streamlit", "run", "src/app.py", \
+     "--server.port=7860", \
+     "--server.address=0.0.0.0", \
+     "--server.headless=true", \
+     "--server.enableCORS=false", \
+     "--server.enableXsrfProtection=false"]
