@@ -6,18 +6,13 @@ TASK: Implement safety validation using both local checks and Azure Content Safe
 """
 import re
 from typing import Dict, Any, List
-from azure.ai.contentsafety import ContentSafetyClient
-from azure.core.credentials import AzureKeyCredential
-from azure.core.exceptions import HttpResponseError
-from azure.ai.contentsafety.models import AnalyzeTextOptions
 from src.config import Config
-from guardrails.content_safety import ContentSafety
 
 class SafetyValidator:
     """Validates content safety and detects adversarial attacks (jailbreaks)"""
-    
+
     def __init__(self):
-        # HINT: Initialize local content safety checker
+        from guardrails.content_safety import ContentSafety  # lazy
         self.content_safety = ContentSafety()
         
         # HINT: Define prompt injection patterns
@@ -30,12 +25,13 @@ class SafetyValidator:
              r"act as (an? )?(unrestricted|unfiltered|jailbreak)",
         ]
         
-        # HINT: Initialize Azure Content Safety client if credentials available
         self.client = None
         if Config.AZURE_CONTENT_SAFETY_ENDPOINT and Config.AZURE_CONTENT_SAFETY_KEY:
             try:
+                from azure.ai.contentsafety import ContentSafetyClient      # lazy
+                from azure.core.credentials import AzureKeyCredential       # lazy
                 self.client = ContentSafetyClient(
-                    endpoint=Config.AZURE_CONTENT_SAFETY_ENDPOINT,  
+                    endpoint=Config.AZURE_CONTENT_SAFETY_ENDPOINT,
                     credential=AzureKeyCredential(Config.AZURE_CONTENT_SAFETY_KEY)
                 )
             except Exception as e:
@@ -71,17 +67,16 @@ class SafetyValidator:
         # HINT: 3. Azure Content Safety Check
         if self.client:
             try:
-                request = AnalyzeTextOptions(text=text)  
+                from azure.ai.contentsafety.models import AnalyzeTextOptions  # lazy
+                from azure.core.exceptions import HttpResponseError            # lazy
+                request = AnalyzeTextOptions(text=text)
                 response = self.client.analyze_text(request)
-                
-                # HINT: Check categories_analysis for high severity flags (severity > 2)
-                if response.categories_analysis:  
+                if response.categories_analysis:
                     for analysis in response.categories_analysis:
-                        if analysis.severity > 2: 
-                            is_safe = False 
-                            flags.append(f"Azure Content Safety Violation: {analysis.category} ({analysis.severity})")  # HINT: category, severity
-                    
-            except HttpResponseError as e:
+                        if analysis.severity > 2:
+                            is_safe = False
+                            flags.append(f"Azure Content Safety Violation: {analysis.category} ({analysis.severity})")
+            except Exception as e:
                 print(f"Azure Content Safety check failed: {e}")
         
         return {

@@ -1,7 +1,7 @@
 """
 Streamlit UI Application
-RUBRIC: Streamlit UI Application 
-- Page config and layout implemented 
+RUBRIC: Streamlit UI Application
+- Page config and layout implemented
 - Search integrated correctly
 - Results and sources displayed (1 mark)
 - UI/UX design and examples (1 mark)
@@ -12,14 +12,11 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-import streamlit as st
-from src.search_engine import RibbonSearchEngine
-from src.config import Config
-import src.monitoring  # Enable MLflow/Azure Monitor
 import time
+import streamlit as st
 
 # ====================
-# Page Config
+# Page Config (must be first Streamlit call)
 # ====================
 st.set_page_config(
     page_title="Ribbon AI Assistant",
@@ -67,6 +64,17 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# ── Cached engine — loads once per server process, survives reruns ────────────
+@st.cache_resource(show_spinner="Loading Ribbon AI engine — please wait...")
+def _load_engine():
+    try:
+        from src.search_engine import RibbonSearchEngine
+        return RibbonSearchEngine(), None
+    except Exception as e:
+        return None, str(e)
+
+engine, engine_error = _load_engine()
+
 # ====================
 # Session-state bootstrap — must run before ANY widget renders
 # ====================
@@ -85,19 +93,6 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
-
-# ====================
-# Initialize Engine
-# ====================
-@st.cache_resource
-def get_engine():
-    try:
-        return RibbonSearchEngine()
-    except Exception as e:
-        st.error(f"Failed to initialize search engine: {e}")
-        return None
-
-engine = get_engine()
 
 # ====================
 # Callbacks (defined before any widget that references them)
@@ -180,7 +175,16 @@ with st.sidebar:
     st.metric("Queries this session", st.session_state.query_count)
 
     st.divider()
-    if st.button("Clear Cache", use_container_width=True):
+
+    # Engine status indicator
+    st.markdown("### Engine Status")
+    if engine_error:
+        st.error(f"Load failed: {engine_error}")
+    else:
+        st.success("AI Ready")
+
+    st.divider()
+    if st.button("Reload Engine", use_container_width=True):
         st.cache_resource.clear()
         st.rerun()
 
@@ -233,7 +237,14 @@ query_text = st.text_input(
 )
 
 _auto_search = st.session_state.pop("_auto_search", False)
-search_button = st.button("Search Ribbon Knowledge Base", use_container_width=True, type="primary")
+
+# Show engine status near the search button
+if engine_error:
+    st.error(f"Engine error: {engine_error}")
+else:
+    st.success("Ready for search")
+
+search_button = st.button("Search Ribbon Knowledge Base", use_container_width=True, type="primary", disabled=engine is None)
 
 active_query = query_text.strip()
 if not active_query and _auto_search:
@@ -293,4 +304,3 @@ if trigger and engine and active_query:
 
 elif trigger and not active_query:
     st.warning("Please enter a question.")
-

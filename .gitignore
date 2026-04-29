@@ -1,14 +1,16 @@
-
-@"
 .env
 .env.sample
-faiss_index/
 __pycache__/
 *.pyc
 *.pyo
+faiss_index/
 mlruns/
 mlartifacts/
 *.log
 reports/
 .pytest_cache/
-"@ | Set-Content .gitignore -Encoding UTF8
+model_cache/
+env_v1/
+env_v1
+.claude/
+.streamlit/secrets.toml

@@ -6,14 +6,13 @@ TASK: Implement compliance checking using PII detector
 """
 import re
 from typing import Dict, Any, List
-from guardrails.pii_detector import PIIDetector
 
 class ComplianceChecker:
     """Ensures content meets regulatory and organizational compliance requirements"""
-    
+
     def __init__(self):
-        # HINT: Initialize PII detector
-        self.pii_detector = PIIDetector()  # HINT: PIIDetector()
+        from guardrails.pii_detector import PIIDetector  # lazy
+        self.pii_detector = PIIDetector()
 
     def check_compliance(self, text: str, compliance_standards: List[str] = None, industry: str = "travel") -> Dict[str, Any]:
         """

@@ -1,3 +1,9 @@
-# Ribbon RAG Chatbot
-AI-powered chatbot for Ribbon Global financial services
-Built with LangChain, HuggingFace, FAISS, Streamlit and MLflow
+---
+title: Ribbon Chatbot
+emoji: 🎀
+colorFrom: green
+colorTo: teal
+sdk: docker
+app_port: 7860
+pinned: false
+---

@@ -15,8 +15,12 @@ class Config:
     HF_LLM_MODEL = os.getenv("HF_LLM_MODEL", "mistralai/Mistral-7B-Instruct-v0.3")
     HF_EMBEDDING_MODEL = os.getenv("HF_EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 
-    # FAISS Vector Store Configuration
+    # FAISS Vector Store Configuration (legacy)
     FAISS_INDEX_PATH = os.getenv("FAISS_INDEX_PATH", "./faiss_index")
+
+    # ChromaDB Vector Store Configuration
+    CHROMA_PATH = os.getenv("CHROMA_PATH", "./chroma_index")
+    CHROMA_COLLECTION = os.getenv("CHROMA_COLLECTION", "ribbon_kb")
 
     # Azure OpenAI Configuration (kept for reference)
     AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")

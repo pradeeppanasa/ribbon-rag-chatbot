@@ -6,15 +6,14 @@ TASK: Implement main governance orchestrator with audit logging
 """
 from typing import Dict, Any
 import datetime
-from governance.safety_validator import SafetyValidator
-from governance.compliance_checker import ComplianceChecker
 
 class GovernanceGate:
     """The main orchestrator that coordinates all governance checks"""
-    
+
     def __init__(self):
-        # HINT: Initialize safety validator and compliance checker
-        self.safety_validator = SafetyValidator() 
+        from governance.safety_validator import SafetyValidator      # lazy
+        from governance.compliance_checker import ComplianceChecker  # lazy
+        self.safety_validator = SafetyValidator()
         self.compliance_checker = ComplianceChecker() 
         self.audit_log = []
 
